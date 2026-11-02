@@ -1,17 +1,39 @@
-# flutter_widgets_isenbekova
+# Лабораторная работа №4-5. Flutter: структура UI и компонентный подход
 
-A new Flutter project.
+- **ФИО:** Исенбекова Эсмира
+- **Группа:** ИСП-241
+- **Дата сдачи:** 02.11.2026
 
-## Getting Started
+## Что изучили
+1. Структуру Flutter-приложения и виджет `MaterialApp`/`Scaffold`.
+2. Построение UI через вложенные виджеты (`Container`, `Center`, `Column`, `Image`, `TextButton`).
+3. Вынос виджетов в отдельные классы и файлы (компонентный подход).
+4. Передачу данных в виджеты через параметры конструктора.
+5. `StatelessWidget` vs `StatefulWidget` и управление состоянием через `setState`.
+6. Работу с assets, случайными числами и навигацией по файлам проекта.
 
-This project is a starting point for a Flutter application.
+## Скриншот финального приложения
+![Roll Dice](img\step6_Isenbekova.png)
 
-A few resources to get you started if this is your first Flutter project:
+## Ссылка на репозиторий
+https://github.com/EsmiraiSEN/Flutter_Widgets.git
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Инструкция по запуску
+```bash
+git clone https://github.com/EsmiraiSEN/Flutter_Widgets.git
+cd Flutter_Widgets
+flutter pub get
+flutter run -d chrome
+```
+## Ответы на вопросы
+1. Зачем выносить виджеты в отдельные файлы?
+Это улучшает читаемость и поддержку кода: каждый виджет изолирован, его проще найти, переиспользовать и тестировать. Если держать всё в main.dart, файл быстро разрастается, появляются конфликты имён и сложности с навигацией по коду.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Что такое BuildContext?
+Это объект, содержащий информацию о положении виджета в дереве виджетов и доступ к родительским InheritedWidget (темы, локализация, навигация). build() принимает его, потому что Flutter передаёт актуальный контекст при каждой перерисовке, и виджет может корректно взаимодействовать с окружением.
+
+3. Чем StatelessWidget отличается от StatefulWidget?
+StatelessWidget не хранит изменяемое состояние и перерисовывается только при пересоздании. StatefulWidget имеет объект State, который хранит данные и перерисовывается по setState(). Пример: статичный заголовок — StatelessWidget; счётчик, кубик, форма — StatefulWidget.
+
+4. Почему Random() создаётся на уровне файла, а не внутри rollDice()?
+Чтобы не создавать новый генератор при каждом нажатии. Один экземпляр Random на уровне файла эффективнее и даёт более равномерную последовательность случайных чисел.
